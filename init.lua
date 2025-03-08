@@ -14,7 +14,9 @@ Space + sn - Find files in nvim config
 Shift + K - show function signature which is highlighted
 !<command> - runs command in the terminal
 
-:MasonInstall debugpy - We seem to always need this for some reason
+F5 - launch debugger
+Space + B - set breakpoint
+a - launch repl inside dap
 ]]
 
 --[[
