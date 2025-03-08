@@ -95,8 +95,7 @@ return {
       -- online, please don't ask me how to install them :)
       ensure_installed = {
         -- Update this to ensure that you have the debuggers for the langs you want
-        'delve',
-        'debugpy',
+        'python',
       },
     }
 
@@ -147,6 +146,9 @@ return {
       },
     }
 
-    require('dap-python').setup {}
+    -- UGLY hack to make debugpy work
+    -- otherwise it struggles to fine the correct python
+    local python_path = table.concat({ vim.fn.stdpath 'data', 'mason', 'packages', 'debugpy', 'venv', 'bin', 'python' }, '/'):gsub('//+', '/')
+    require('dap-python').setup(python_path)
   end,
 }

@@ -13,6 +13,8 @@ Space + sn - Find files in nvim config
 :bp - previous buffer
 Shift + K - show function signature which is highlighted
 !<command> - runs command in the terminal
+
+:MasonInstall debugpy - We seem to always need this for some reason
 ]]
 
 --[[
@@ -1018,7 +1020,7 @@ require('lazy').setup({
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     opts = {
-      ensure_installed = { 'python', 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
+      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {
