@@ -209,11 +209,15 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
 --
---  See `:help wincmd` for a list of all window commands
-vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
-vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
-vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+----  See `:help wincmd` for a list of all window commands
+--vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
+--vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
+--vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
+--vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+
+-- Use LazyVim shortcuts to switch between buffer
+vim.keymap.set('n', ']b', '<cmd>bnext<CR>', { desc = 'Next buffer' })
+vim.keymap.set('n', '[b', '<cmd>bprevious<CR>', { desc = 'Previous buffer' })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -490,6 +494,18 @@ require('lazy').setup({
       -- The plugin doesn’t require explicit config.
       -- But if you have special needs, you can set them here.
     end,
+  },
+
+  -- vim-tmux-navigator - Needs separate tmux configuration, and plugin installation
+  {
+    'christoomey/vim-tmux-navigator',
+    lazy = false, -- Ensure it loads immediately
+    keys = {
+      { '<C-h>', '<cmd>TmuxNavigateLeft<CR>', desc = 'Go to left split' },
+      { '<C-l>', '<cmd>TmuxNavigateRight<CR>', desc = 'Go to right split' },
+      { '<C-j>', '<cmd>TmuxNavigateDown<CR>', desc = 'Go to below split' },
+      { '<C-k>', '<cmd>TmuxNavigateUp<CR>', desc = 'Go to above split' },
+    },
   },
 
   -- Make buffers appear as tabs
@@ -843,7 +859,13 @@ require('lazy').setup({
       formatters_by_ft = {
         lua = { 'stylua' },
         -- Conform can also run multiple formatters sequentially
-        python = { 'ruff' },
+        python = { -- To fix auto-fixable lint errors.
+          'ruff_fix',
+          -- To run the Ruff formatter.
+          'ruff_format',
+          -- To organize the imports.
+          'ruff_organize_imports',
+        },
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
         -- javascript = { "prettierd", "prettier", stop_after_first = true },
