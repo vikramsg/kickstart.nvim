@@ -5,6 +5,10 @@
 This is a fork of [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim).
 The primary changes I made is for easier Python and Tmux setup. 
 
+## zsh
+
+I have also put my zsh setup here for easier tracking of any changes I make.
+
 ## Introduction
 
 A starting point for Neovim that is:
