@@ -55,3 +55,15 @@ zinit cdreplay -q
 # Aliases
 
 source ~/.zshenv
+
+
+#########################################
+# Tools
+# files-to-explore
+# Install using uv tool install files-to-prompt
+# Usage: tfp <path> 
+# -e <filetype> to include only file types you want
+# -m # to output markdown
+# -o # to output to a file
+alias tfp="uvx files-to-prompt"
+
